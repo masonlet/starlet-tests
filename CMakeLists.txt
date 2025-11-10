@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.23)
 
-set(TEST_NAME StarletTests)
+set(TEST_NAME starlet_tests)
 set(TEST_DIR "${CMAKE_CURRENT_SOURCE_DIR}/tests")
 
 project(${TEST_NAME} LANGUAGES CXX)
@@ -23,11 +23,18 @@ file(GLOB_RECURSE TEST_SOURCES ${TEST_DIR}/*.cpp)
 add_executable(${TEST_NAME} ${TEST_SOURCES})
 
 if(NOT BUILD_LOCAL)
-  FetchContent_Declare(StarletMath GIT_REPOSITORY https://github.com/masonlet/starletmath.git GIT_TAG main)
-  FetchContent_MakeAvailable(StarletMath)
+  FetchContent_Declare(starlet_math
+    GIT_REPOSITORY https://github.com/masonlet/starlet-math.git
+    GIT_TAG main
+  )
+  FetchContent_MakeAvailable(starlet_math)
 endif()
 
-target_link_libraries(${TEST_NAME} PRIVATE gtest_main StarletMath)
+target_link_libraries(${TEST_NAME} 
+  PRIVATE
+    gtest_main 
+    starlet_math
+)
 
 include(GoogleTest)
 gtest_discover_tests(${TEST_NAME})
