@@ -24,16 +24,45 @@ add_executable(${TEST_NAME} ${TEST_SOURCES})
 
 if(NOT BUILD_LOCAL)
   FetchContent_Declare(starlet_math
-    GIT_REPOSITORY https://github.com/masonlet/starlet-math.git
+    GIT_REPOSITORY https://github.com/masonlet/starlet-math.git 
     GIT_TAG main
   )
-  FetchContent_MakeAvailable(starlet_math)
+  FetchContent_Declare(starlet_serializer 
+    GIT_REPOSITORY https://github.com/masonlet/starlet-serializer.git 
+    GIT_TAG main
+  )
+  FetchContent_Declare(starlet_scene
+    GIT_REPOSITORY https://github.com/masonlet/starlet-scene.git 
+    GIT_TAG main
+  )
+  FetchContent_Declare(starlet_graphics
+    GIT_REPOSITORY https://github.com/masonlet/starlet-graphics.git 
+    GIT_TAG main
+  )
+  FetchContent_Declare(starlet_controls
+    GIT_REPOSITORY https://github.com/masonlet/starlet-controls.git 
+    GIT_TAG main
+  )
+  FetchContent_Declare(starlet_engine
+    GIT_REPOSITORY https://github.com/masonlet/starlet-engine.git 
+    GIT_TAG main
+  )
+  FetchContent_Declare(starlet_logger
+    GIT_REPOSITORY https://github.com/masonlet/starlet-logger.git 
+    GIT_TAG main
+  )
 endif()
 
 target_link_libraries(${TEST_NAME} 
   PRIVATE
     gtest_main 
     starlet_math
+    starlet_logger
+    starlet_serializer
+    starlet_scene
+    starlet_graphics
+    starlet_controls
+    starlet_engine
 )
 
 include(GoogleTest)
