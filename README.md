@@ -12,7 +12,7 @@ This project uses **CMake** and **Google Test**.
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/masonlet/starlet-tests.git
+git clone https://github.com/starlet-libs/testing.git
 cd starlet-tests
 ```
 
